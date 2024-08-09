@@ -28,6 +28,27 @@ public class bigO {
         }
     }
 
+    // Time complexity is O(log n) - shows a logarithmic change in time complexity
+    public static int binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // Prevents potential overflow
+
+            if (array[mid] == target) {
+                return mid; // Target found
+            }
+            if (array[mid] < target) {
+                left = mid + 1; // Search right half
+            } else {
+                right = mid - 1; // Search left half
+            }
+        }
+
+        return -1; // Target not found
+    }
+
     public static void main(String [] args){
         int[] num = {1,2,3,4,6};
         printArr(num);
@@ -36,5 +57,7 @@ public class bigO {
         printWithForEach(num);
         System.out.println();
         nestedLoop(num);
+        System.out.println();
+        System.out.println(binarySearch(num,6));
     }
 }
